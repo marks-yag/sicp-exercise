@@ -1,0 +1,13 @@
+(define (cont-frac n d k)
+  (define (close-enough? a b)
+    (< (abs (- a b)) 0.0001))
+  (define (value itor)
+      (if (= itor k)
+	  (/ (n k) (d k))
+	  (/ (n k) (+ (d k) (value (+ itor 1))))))
+  (value 1))
+
+(display (cont-frac (lambda (i) 1.0)
+	   (lambda (i) 1.0)
+	   127))
+(newline)
